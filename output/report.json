@@ -1,23 +1,33 @@
 {
     "A1": {
         "delivered": 4,
-        "distance": 75.83,
-        "efficiency": 18.96
+        "distance": 70.04,
+        "efficiency": 17.51,
+        "delay_minutes": 15
     },
     "A2": {
         "delivered": 1,
         "distance": 31.36,
-        "efficiency": 31.36
+        "efficiency": 31.36,
+        "delay_minutes": 6
     },
     "A3": {
         "delivered": 7,
-        "distance": 180.99,
-        "efficiency": 25.86
+        "distance": 174.01,
+        "efficiency": 24.86,
+        "delay_minutes": 45
     },
     "A4": {
         "delivered": 0,
         "distance": 0.0,
-        "efficiency": 0.0
+        "efficiency": 0.0,
+        "delay_minutes": 0
+    },
+    "A5": {
+        "delivered": 0,
+        "distance": 0.0,
+        "efficiency": 0.0,
+        "delay_minutes": 0
     },
     "agent": "A1"
 }

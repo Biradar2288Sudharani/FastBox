@@ -1,6 +1,7 @@
 import json
 import math
-
+import random
+import csv
 
 def load_data(file_path):
     """Read and parse JSON data from a file."""
@@ -91,7 +92,8 @@ def simulate_delivery(packages, assignments, agents, warehouses):
     for agent_id in agents:
         agent_results[agent_id] = {
             "delivered": 0,
-            "distance": 0.0
+            "distance": 0.0,
+            "delay_minutes": 0
         }
 
     # Process packages in the order given in the JSON file.
@@ -130,6 +132,10 @@ def simulate_delivery(packages, assignments, agents, warehouses):
         # Increase delivered package count.
         agent_results[agent_id]["delivered"] += 1
 
+        delay = random.randint(1, 10)
+
+        agent_results[agent_id]["delay_minutes"] += delay
+
         # Agent is now at the destination.
         current_locations[agent_id] = destination[:]
 
@@ -159,7 +165,8 @@ def generate_report(agent_results):
         report[agent_id] = {
             "delivered": delivered,
             "distance": round(distance, 2),
-            "efficiency": round(efficiency, 2)
+            "efficiency": round(efficiency, 2),
+            "delay_minutes": result["delay_minutes"]
         }
 
         # Lower distance per delivered package
@@ -178,3 +185,67 @@ def save_report(report, file_path):
 
     with open(file_path, "w") as file:
         json.dump(report, file, indent=4)
+
+def visualize_routes(packages, assignments):
+    """Display package delivery routes using ASCII text."""
+
+    print("\nASCII Route Visualization:")
+    print("-" * 40)
+
+    agent_routes = {}
+
+    for package in packages:
+        package_id = package["id"]
+        agent_id = assignments[package_id]
+        warehouse_id = package["warehouse"]
+
+        if agent_id not in agent_routes:
+            agent_routes[agent_id] = []
+
+        agent_routes[agent_id].append(
+            f"{warehouse_id} -> {package_id} -> Destination"
+        )
+
+    for agent_id, routes in agent_routes.items():
+        print(f"\n{agent_id} Route:")
+
+        for route in routes:
+            print(f"  {route}")
+
+    print("-" * 40)
+
+def add_new_agent(agent_id, location, agents):
+    """Add a new delivery agent during the day."""
+
+    agents[agent_id] = location[:]
+
+    print("\nNew Agent Joined Mid-Day:")
+    print(f"{agent_id} -> Location {location}")
+
+def export_top_performer(report, file_path):
+    """Export the most efficient agent's details to a CSV file."""
+
+    best_agent = report["agent"]
+    best_result = report[best_agent]
+
+    with open(file_path, "w", newline="") as file:
+
+        writer = csv.writer(file)
+
+        # CSV header
+        writer.writerow([
+            "agent",
+            "delivered",
+            "distance",
+            "efficiency",
+            "delay_minutes"
+        ])
+
+        # Top performer data
+        writer.writerow([
+            best_agent,
+            best_result["delivered"],
+            best_result["distance"],
+            best_result["efficiency"],
+            best_result["delay_minutes"]
+        ])
