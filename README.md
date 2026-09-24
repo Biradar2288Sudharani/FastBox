@@ -9,6 +9,7 @@ This project simulates how delivery agents receive packages from different wareh
 The system finds the nearest agent for each package, calculates the delivery distance, simulates delivery, and creates a final delivery report.
 
 I also added some bonus features to make the project more realistic.
+
 ---
 
 ## 🎯 Main Features
@@ -20,6 +21,7 @@ I also added some bonus features to make the project more realistic.
 * Calculate delivery efficiency
 * Find the most efficient agent
 * Generate a JSON delivery report
+
 ---
 
 ## ⭐ Bonus Features
@@ -52,6 +54,7 @@ The file is saved as:
 ```text
 output/top_performer.csv
 ```
+
 ---
 
 ## 🛠️ Technologies Used
@@ -60,6 +63,7 @@ output/top_performer.csv
 * CSV
 * Math module
 * Random module
+
 ---
 
 ## 📂 Project Structure
@@ -79,6 +83,7 @@ FastBox_Delivery_System/
 │
 ├── main.py
 └── README.md
+
 ```
 ---
 
@@ -123,6 +128,7 @@ The report is saved as:
 ```text
 output/report.json
 ```
+
 ---
 
 ## ▶️ How to Run the Project
@@ -141,6 +147,7 @@ The terminal shows:
 * ASCII routes
 * Delivery report
 * Most efficient agent
+
 ---
 
 ## 📄 Output Files
@@ -164,6 +171,7 @@ math.sqrt(
     (y2 - y1) ** 2
 )
 ```
+
 ---
 
 ## 💡 What I Learned From This Project
@@ -179,6 +187,8 @@ Through this project, I practiced:
 * CSV file creation
 * Basic simulation logic
 * Writing clean and understandable Python code
+
+---
 
 ## 📸 Sample Output
 
