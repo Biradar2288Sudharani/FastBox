@@ -235,3 +235,6 @@ Through this project, I practiced:
 * Basic simulation logic
 * Writing clean and understandable Python code
 
+## 📸 Sample Output
+
+![FastBox Delivery System Output](data/output.png)
