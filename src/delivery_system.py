@@ -52,7 +52,7 @@ def assign_packages(packages, agents, warehouses):
         assignments[package_id] = nearest_agent
     return assignments
 
-
+# Simulating the delivery 
 def simulate_delivery(packages, assignments, agents, warehouses):
     """
     Simulate package delivery.
@@ -107,7 +107,7 @@ def simulate_delivery(packages, assignments, agents, warehouses):
         current_locations[agent_id] = destination[:]
     return agent_results
 
-
+# Bonus - 1
 def generate_report(agent_results):
     """Generate the final delivery report."""
     report = {}
@@ -116,8 +116,6 @@ def generate_report(agent_results):
     for agent_id, result in agent_results.items():
         delivered = result["delivered"]
         distance = result["distance"]
-        # Avoid division by zero for agents
-        # who did not deliver any package.
         if delivered > 0:
             efficiency = distance / delivered
         else:
@@ -128,20 +126,19 @@ def generate_report(agent_results):
             "efficiency": round(efficiency, 2),
             "delay_minutes": result["delay_minutes"]
         }
-        # Lower distance per delivered package
-        # means better efficiency.
         if delivered > 0 and efficiency < best_efficiency:
             best_efficiency = efficiency
             best_agent = agent_id
     report["agent"] = best_agent
     return report
 
-
+# generated report saved to the file
 def save_report(report, file_path):
     """Save the final report to report.json."""
     with open(file_path, "w") as file:
         json.dump(report, file, indent=4)
 
+# Bonus - 2
 def visualize_routes(packages, assignments):
     """Display package delivery routes using ASCII text."""
     print("\nASCII Route Visualization:")
@@ -162,12 +159,14 @@ def visualize_routes(packages, assignments):
             print(f"  {route}")
     print("-" * 40)
 
+# Bonus - 3
 def add_new_agent(agent_id, location, agents):
     """Add a new delivery agent during the day."""
     agents[agent_id] = location[:]
     print("\nNew Agent Joined Mid-Day:")
     print(f"{agent_id} -> Location {location}")
 
+# Bonus - 4
 def export_top_performer(report, file_path):
     """Export the most efficient agent's details to a CSV file."""
     best_agent = report["agent"]
