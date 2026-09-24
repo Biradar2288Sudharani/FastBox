@@ -237,4 +237,4 @@ Through this project, I practiced:
 
 ## 📸 Sample Output
 
-![FastBox Delivery System Output](screenshots/output.png)
+![FastBox Delivery System Output](data/output.png)
